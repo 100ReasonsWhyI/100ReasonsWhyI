@@ -54,12 +54,18 @@
             display: inline-block;
             z-index: 1000;
         }
+        #song-title {
+            font-weight: bold;
+            color: #b30000;
+            margin-bottom: 10px;
+        }
         .controls button {
             background: #ff1a1a;
             color: white;
             border: none;
             padding: 10px 15px;
             margin-top: 10px;
+            margin-right: 5px;
             border-radius: 10px;
             cursor: pointer;
             font-size: 1em;
@@ -118,45 +124,45 @@
             <li>42. I love that you are a big foodie.</li>
             <li>43. I love your good manners.</li>
             <li>44. I love that you like ice cream as much as I do.</li>
-            <li>45. </li>
-            <li>46. </li>
-            <li>47. </li>
-            <li>48. </li>
-            <li>49. </li>
-            <li>50. </li>
-            <li>51. </li>
-            <li>52. </li>
-            <li>53. </li>
-            <li>54. </li>
-            <li>55. </li>
-            <li>56. </li>
-            <li>57. </li>
-            <li>58. </li>
-            <li>59. </li>
-            <li>60. </li>
-            <li>61. </li>
-            <li>62. </li>
-            <li>63. </li>
-            <li>64. </li>
-            <li>65. </li>
-            <li>66. </li>
-            <li>67. </li>
-            <li>68. </li>
-            <li>69. </li>
-            <li>70. </li>
-            <li>71. </li>
-            <li>72. </li>
-            <li>73. </li>
-            <li>74. </li>
-            <li>75. </li>
-            <li>76. </li>
-            <li>77. </li>
-            <li>78. </li>
-            <li>79. </li>
-            <li>80. </li>
-            <li>81. </li>
-            <li>82. </li>
-            <li>83. </li>
+            <li>45. I love the freckles on your face.</li>
+            <li>46. I love how you make me feel at home.</li>
+            <li>47. I love your ability to forgive.</li>
+            <li>48. I love your nose.</li>
+            <li>49. I love that you make me believe in romance.</li>
+            <li>50. I love how you make me daydream.</li>
+            <li>51. I love when you wear my clothes.</li>
+            <li>52. I love that you find my jokes funny.</li>
+            <li>53. I love when you take care of me when I'm sick.</li>
+            <li>54. I love your music taste.</li>
+            <li>55. I love when you say "Where my ... at?!?!"</li>
+            <li>56. I love when you are half asleep still trying to wake up.</li>
+            <li>57. I love how you instinctively reach for my hand when we walk.</li>
+            <li>58. I love how you can make my bad days good just by being you.</li>
+            <li>59. I love how you hype me up for the smallest things.</li>
+            <li>60. I love the unique little dances you do.</li>
+            <li>61. I love how you go crazy for small animals.</li>
+            <li>62. I love that you're the first person I want to tell good news to.</li>
+            <li>63. I love that you're the first person I go to tell bad news to as well.</li>
+            <li>64. I love that you make me feel like the luckiest guy in the world.</li>
+            <li>65. I love that I never get tired of being around you.</li>
+            <li>66. I love how you are unapologetically yourself.</li>
+            <li>67. I love that we can be goofy together.</li>
+            <li>68. I love how you always initially support my weird ideas (but regret it when I execute them).</li>
+            <li>69. I love how fun you make everyday life.</li>
+            <li>70. I love that despite all odds we are still together.</li>
+            <li>71. I love how passionate I feel towards you.</li>
+            <li>72. I love that I can cry in front of you.</li>
+            <li>73. I love how excited you get about new classes.</li>
+            <li>74. I love how you lean on me whenever we are close.</li>
+            <li>75. I love how you treat your plushies with respect.</li>
+            <li>76. I love how you need my presence when it's dark or you are alone.</li>
+            <li>77. I love how you trust me with your craziest backstories.</li>
+            <li>78. I love that you tell me everything that's going on.</li>
+            <li>79. I love that you rush to me with new drama.</li>
+            <li>80. I love making you blush.</li>
+            <li>81. I love how you challenge my perspective and make me see things differently.</li>
+            <li>82. I love how you let me be weird without making me feel self-conscious.</li>
+            <li>83. I love all of the soundtracks you have made for yourself for different moods.</li>
             <li>84. </li>
             <li>85. </li>
             <li>86. </li>
@@ -179,12 +185,14 @@
     
     <div class="music-container">
         <h2>Our Special Playlist</h2>
+        <p id="song-title">Loading...</p>
         <audio id="audio-player" controls>
             <source id="audio-source" src="" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
         <div class="controls">
-            <button id="skip-button">Skip ⏭</button>
+            <button id="prev-button">⏮ Previous</button>
+            <button id="skip-button">⏭ Next</button>
         </div>
     </div>
     
@@ -198,25 +206,59 @@
             "music/Joseph Vincent - Our First Song.mp3",
             "music/JVKE - golden hour.mp3",
             "music/KATIE - Thinkin Bout You.mp3",
-            "music/Kid Travis - Strawberry Skies.mp3"
+            "music/Kid Travis - Strawberry Skies.mp3",
+            "music/Daniel Caesar - Always.mp3",
+            "music/Johnny Stimson - Flower.mp3",
+            "music/Daniel Caesar - Let Me Go.mp3",
+            "music/The Weeknd - Dancing In The Flames.mp3"
         ];
         
-        function getRandomSong() {
-            return playlist[Math.floor(Math.random() * playlist.length)];
+        let currentSongIndex = -1;
+        let previousSongs = [];
+
+        function getRandomIndex() {
+            return Math.floor(Math.random() * playlist.length);
         }
-        
-        function playRandomSong() {
+
+        function playSong(index) {
             const audio = document.getElementById("audio-player");
             const source = document.getElementById("audio-source");
-            source.src = getRandomSong();
+            const songTitle = document.getElementById("song-title");
+
+            if (index < 0 || index >= playlist.length) {
+                index = getRandomIndex();
+            }
+
+            currentSongIndex = index;
+            previousSongs.push(index);
+
+            let songPath = playlist[index];
+            source.src = songPath;
+
+            let songName = songPath.split("/").pop().replace(/.mp3$/, "");
+            songTitle.textContent = songName;
+
             audio.load();
             audio.play().catch(error => console.log("Autoplay prevented by browser", error));
         }
-        
-        document.getElementById("audio-player").addEventListener("ended", playRandomSong);
-        document.getElementById("skip-button").addEventListener("click", playRandomSong);
-        
-        playRandomSong();
+
+        function playNextSong() {
+            playSong(getRandomIndex());
+        }
+
+        function playPreviousSong() {
+            if (previousSongs.length > 1) {
+                previousSongs.pop();
+                let lastIndex = previousSongs[previousSongs.length - 1];
+                playSong(lastIndex);
+            }
+        }
+
+        document.getElementById("audio-player").addEventListener("ended", playNextSong);
+        document.getElementById("skip-button").addEventListener("click", playNextSong);
+        document.getElementById("prev-button").addEventListener("click", playPreviousSong);
+
+        playNextSong();
     </script>
 </body>
 </html>
