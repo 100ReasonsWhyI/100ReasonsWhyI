@@ -76,21 +76,65 @@
         /* Swiper Gallery Styles */
         .swiper-container {
             width: 100%;
-            height: 300px;
+            height: 660px;
             margin: 20px 0;
             border-radius: 15px;
             overflow: hidden;
+            border: 3px solid #ffcccc;
+            box-shadow: 0px 4px 10px rgba(255, 26, 26, 0.2);
+            position: relative;
         }
         .swiper-slide {
             display: flex;
             justify-content: center;
             align-items: center;
             background: #ffcccc;
+            position: relative;
         }
         .swiper-slide img {
             max-width: 100%;
             max-height: 100%;
             border-radius: 15px;
+            object-fit: cover;
+        }
+        .swiper-slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 204, 204, 0.3);
+            border-radius: 15px;
+        }
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #ff1a1a;
+            background: rgba(255, 255, 255, 0.8);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.1);
+        }
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .swiper-container::before {
+            content: '❤️';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #ff1a1a;
+            z-index: 10;
         }
     </style>
 </head>
@@ -103,13 +147,31 @@
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <img src="photo1.jpg" alt="Photo 1">
+                    <img src="images/image1.png" alt="Photo 1">
                 </div>
                 <div class="swiper-slide">
-                    <img src="photo2.jpg" alt="Photo 2">
+                    <img src="images/image2.png" alt="Photo 2">
                 </div>
                 <div class="swiper-slide">
-                    <img src="photo3.jpg" alt="Photo 3">
+                    <img src="images/image3.png" alt="Photo 3">
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/image4.png" alt="Photo 4">
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/image5.png" alt="Photo 5">
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/image6.png" alt="Photo 6">
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/image7.png" alt="Photo 7">
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/image8.png" alt="Photo 8">
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/image9.png" alt="Photo 9">
                 </div>
                 <!-- Add more slides as needed -->
             </div>
@@ -244,6 +306,7 @@
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
+            preloadedImages:false,
         });
         const playlist = [
             "music/Bruno Mars - Just the Way You Are.mp3",
