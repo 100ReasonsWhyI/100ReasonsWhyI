@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            background-color: #ffe6e6;
+            background: linear-gradient(to right, #ffcccc, #ff6666, #ffcccc, #ff6666, #ffcccc);
             font-family: 'Arial', sans-serif;
             text-align: center;
             color: #b30000;
@@ -17,29 +17,45 @@
         .container {
             max-width: 600px;
             margin: 50px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 25px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            border: 2px solid #b30000;
+            border: 2px solid #ff1a1a;
+            position: relative;
+            overflow: hidden;
+        }
+        .container::before {
+            content: '❤️';
+            font-size: 100px;
+            position: absolute;
+            top: -30px;
+            left: -10px;
+            z-index: 0;
+            color: rgba(255, 26, 26, 0.2);
         }
         h1 {
-            font-size: 2em;
+            font-size: 2.5em;
             color: #ff1a1a;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
         h4 {
             color: #ff1a1a;
+            font-weight: 300;
         }
         #reasons-list {
             list-style-type: none;
             padding: 0;
+            margin-top: 20px;
         }
         #reasons-list li {
             background: #ffcccc;
             margin: 10px 0;
-            padding: 10px;
-            border-radius: 10px;
+            padding: 12px;
+            border-radius: 15px;
             box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            font-size: 1.2em;
         }
         .music-container {
             position: fixed;
@@ -50,7 +66,7 @@
             background: white;
             border-radius: 15px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            border: 2px solid #b30000;
+            border: 2px solid #ff1a1a;
             display: inline-block;
             z-index: 1000;
         }
@@ -58,23 +74,28 @@
             font-weight: bold;
             color: #b30000;
             margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
         }
         .controls button {
             background: #ff1a1a;
             color: white;
             border: none;
-            padding: 10px 15px;
+            padding: 12px 18px;
             margin-top: 10px;
             margin-right: 5px;
             border-radius: 10px;
             cursor: pointer;
-            font-size: 1em;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
         }
         .controls button:hover {
             background: #b30000;
         }
-        /* Swiper Gallery Styles */
-        .swiper-container {
+        .image-gallery {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 100%;
             height: 660px;
             margin: 20px 0;
@@ -82,59 +103,38 @@
             overflow: hidden;
             border: 3px solid #ffcccc;
             box-shadow: 0px 4px 10px rgba(255, 26, 26, 0.2);
-            position: relative;
+            background-color: #ffe6e6;
         }
-        .swiper-slide {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #ffcccc;
-            position: relative;
-        }
-        .swiper-slide img {
-            max-width: 100%;
-            max-height: 100%;
-            border-radius: 15px;
-            object-fit: cover;
-        }
-        .swiper-slide::after {
-            content: '';
+        .nav-button {
             position: absolute;
             top: 0;
+            bottom: 0;
+            width: 50%;
+            background-color: rgba(255, 255, 255, 0);
+            z-index: 10;
+            cursor: pointer;
+            transition: background-color 1s ease;
+        }
+        #prevBtn {
             left: 0;
+            border: none;
+        }
+        #nextBtn {
+            right: 0;            
+            border: none;
+        }
+        .nav-button:hover {
+            background-color: rgba(255, 255, 255, 0.6);
+        }
+        .image-slide {
             width: 100%;
             height: 100%;
-            background: rgba(255, 204, 204, 0.3);
+            object-fit: cover;
+            display: none;
             border-radius: 15px;
         }
-        .swiper-button-next,
-        .swiper-button-prev {
-            color: #ff1a1a;
-            background: rgba(255, 255, 255, 0.8);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-        .swiper-button-next:hover,
-        .swiper-button-prev:hover {
-            background: rgba(255, 255, 255, 1);
-            transform: scale(1.1);
-        }
-        .swiper-button-next::after,
-        .swiper-button-prev::after {
-            font-size: 20px;
-            font-weight: bold;
-        }
-        .swiper-container::before {
-            content: '❤️';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
-            color: #ff1a1a;
-            z-index: 10;
+        .image-slide:first-child {
+            display: block;
         }
     </style>
 </head>
@@ -144,40 +144,21 @@
         <h4>non-exhaustive and in no particular order ;)</h4>
 
         <!-- Photo Gallery -->
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="images/image1.png" alt="Photo 1">
-                </div>
-                <div class="swiper-slide">
-                    <img src="images/image2.png" alt="Photo 2">
-                </div>
-                <div class="swiper-slide">
-                    <img src="images/image3.png" alt="Photo 3">
-                </div>
-                <div class="swiper-slide">
-                    <img src="images/image4.png" alt="Photo 4">
-                </div>
-                <div class="swiper-slide">
-                    <img src="images/image5.png" alt="Photo 5">
-                </div>
-                <div class="swiper-slide">
-                    <img src="images/image6.png" alt="Photo 6">
-                </div>
-                <div class="swiper-slide">
-                    <img src="images/image7.png" alt="Photo 7">
-                </div>
-                <div class="swiper-slide">
-                    <img src="images/image8.png" alt="Photo 8">
-                </div>
-                <div class="swiper-slide">
-                    <img src="images/image9.png" alt="Photo 9">
-                </div>
-                <!-- Add more slides as needed -->
+        <div class="image-gallery">
+            <button id="prevBtn" class="nav-button"></button>
+            <div class="image-container">
+                <img src="images/image1.png" alt="Image 1" class="image-slide">
+                <img src="images/image2.png" alt="Image 2" class="image-slide">
+                <img src="images/image3.png" alt="Image 3" class="image-slide">
+                <img src="images/image4.png" alt="Image 4" class="image-slide">
+                <img src="images/image5.png" alt="Image 5" class="image-slide">
+                <img src="images/image6.png" alt="Image 6" class="image-slide">
+                <img src="images/image7.png" alt="Image 7" class="image-slide">
+                <img src="images/image8.png" alt="Image 8" class="image-slide">
+                <img src="images/image9.png" alt="Image 9" class="image-slide">
+                <!-- Add more images as needed -->
             </div>
-            <!-- Add navigation buttons -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            <button id="nextBtn" class="nav-button"></button>
         </div>
 
         <ul id="reasons-list">
@@ -292,8 +273,8 @@
             Your browser does not support the audio element.
         </audio>
         <div class="controls">
-            <button id="prev-button">⏮ Previous</button>
-            <button id="skip-button">⏭ Next</button>
+            <button id="prev-button">⏮</button>
+            <button id="skip-button">⏭</button>
         </div>
     </div>
     
@@ -371,6 +352,41 @@
         document.getElementById("prev-button").addEventListener("click", playPreviousSong);
 
         playNextSong();
+        // Get all the images and buttons
+        const images = document.querySelectorAll('.image-slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        let currentIndex = 0;
+
+        // Function to show the current image and hide others
+        function showImage(index) {
+            // Hide all images
+            images.forEach((img, i) => {
+                img.style.display = 'none';
+            });
+            
+            // Show the image at the current index
+            images[index].style.display = 'block';
+        }
+
+        // Initially show the first image
+        showImage(currentIndex);
+
+        // Event listener for the 'previous' button
+        prevBtn.addEventListener('click', () => {
+            // Decrement the index and wrap around if necessary
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        });
+
+        // Event listener for the 'next' button
+        nextBtn.addEventListener('click', () => {
+            // Increment the index and wrap around if necessary
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        });
+
     </script>
 </body>
 </html>
