@@ -73,12 +73,51 @@
         .controls button:hover {
             background: #b30000;
         }
+        /* Swiper Gallery Styles */
+        .swiper-container {
+            width: 100%;
+            height: 300px;
+            margin: 20px 0;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #ffcccc;
+        }
+        .swiper-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 15px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>100 Reasons Why I Love You</h1>
-        <h4>non-exhaustive and in no particular order :)</h4>
+        <h4>non-exhaustive and in no particular order ;)</h4>
+
+        <!-- Photo Gallery -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="photo1.jpg" alt="Photo 1">
+                </div>
+                <div class="swiper-slide">
+                    <img src="photo2.jpg" alt="Photo 2">
+                </div>
+                <div class="swiper-slide">
+                    <img src="photo3.jpg" alt="Photo 3">
+                </div>
+                <!-- Add more slides as needed -->
+            </div>
+            <!-- Add navigation buttons -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
         <ul id="reasons-list">
             <li>1. I love your light smile, those cute dimples, and that contagious laugh.</li>
             <li>2. I love the way you make me feel so warm inside.</li>
@@ -88,7 +127,7 @@
             <li>6. I love how graceful and elegant your presence is.</li>
             <li>7. I love your dedication to family and friends.</li>
             <li>8. I love your massages.</li>
-            <li>9. I love kissing your soft cheeks.</li>
+            <li>9. I love kissing your cheeks.</li>
             <li>10. I love your radiating positive energy.</li>
             <li>11. I love your cooking.</li>
             <li>12. I love how loyal you are.</li>
@@ -101,7 +140,7 @@
             <li>19. I love how supportive you are of me in everything I do.</li>
             <li>20. I love your attention to detail.</li>
             <li>21. I love that you are a source of inspiration and motivation to me.</li>
-            <li>22. I love the way you dance without a care in the world.</li>
+            <li>22. I love your goofy little dances.</li>
             <li>23. I love your lingo.</li>
             <li>24. I love how you try to improve my life.</li>
             <li>25. I love how caring you are to me.</li>
@@ -117,7 +156,7 @@
             <li>35. I love that you grew up playing video games.</li>
             <li>36. I love that you enjoy dubstep and raving.</li>
             <li>37. I love that you are so adventurous.</li>
-            <li>38. I love that you enjoy substances as much as I do.</li>
+            <li>38. I love that you enjoy being inebriated as much as I do.</li>
             <li>39. I love how street smart you are.</li>
             <li>40. I love that you try hard to accomodate me.</li>
             <li>41. I love how you fit in any dress you wear.</li>
@@ -139,7 +178,7 @@
             <li>57. I love how you instinctively reach for my hand when we walk.</li>
             <li>58. I love how you can make my bad days good just by being you.</li>
             <li>59. I love how you hype me up for the smallest things.</li>
-            <li>60. I love the unique little dances you do.</li>
+            <li>60. I love how you go limp in my arms.</li>
             <li>61. I love how you go crazy for small animals.</li>
             <li>62. I love that you're the first person I want to tell good news to.</li>
             <li>63. I love that you're the first person I go to tell bad news to as well.</li>
@@ -152,7 +191,7 @@
             <li>70. I love that despite all odds we are still together.</li>
             <li>71. I love how passionate I feel towards you.</li>
             <li>72. I love that I can cry in front of you.</li>
-            <li>73. I love how excited you get about new classes.</li>
+            <li>73. I love how excited you get about new thing.</li>
             <li>74. I love how you lean on me whenever we are close.</li>
             <li>75. I love how you treat your plushies with respect.</li>
             <li>76. I love how you need my presence when it's dark or you are alone.</li>
@@ -163,23 +202,23 @@
             <li>81. I love how you challenge my perspective and make me see things differently.</li>
             <li>82. I love how you let me be weird without making me feel self-conscious.</li>
             <li>83. I love all of the soundtracks you have made for yourself for different moods.</li>
-            <li>84. </li>
-            <li>85. </li>
-            <li>86. </li>
-            <li>87. </li>
-            <li>88. </li>
-            <li>89. </li>
-            <li>90. </li>
-            <li>91. </li>
-            <li>92. </li>
-            <li>93. </li>
-            <li>94. </li>
-            <li>95. </li>
-            <li>96. </li>
-            <li>97. </li>
-            <li>98. </li>
-            <li>99. </li>
-            <li>100. </li>
+            <li>84. I love how I get cuteness aggression from you.</li>
+            <li>85. I love how you try to always be there for my special moments.</li>
+            <li>86. I love that we share a lot of the same values and morals.</li>
+            <li>87. I love how you try to see the best in people.</li>
+            <li>88. I love how curious you are.</li>
+            <li>89. I love your competitiveness.</li>
+            <li>90. I love your ability to form new connections with people.</li>
+            <li>91. I love the smell of your hair.</li>
+            <li>92. I love how you complement me.</li>
+            <li>93. I love that we are a package deal.</li>
+            <li>94. I love how you always creep towards me when you are sleeping.</li>
+            <li>95. I love how tech savvy you are.</li>
+            <li>96. I love how responsible you are.</li>
+            <li>97. I love your humbleness.</li>
+            <li>98. I love your flaws.</li>
+            <li>99. I love our relationship.</li>
+            <li>100. I love you.</li>
         </ul>
     </div>
     
@@ -196,7 +235,16 @@
         </div>
     </div>
     
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
+        // Initialize Swiper
+        const swiper = new Swiper('.swiper-container', {
+            loop: true, // Enable infinite loop
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
         const playlist = [
             "music/Bruno Mars - Just the Way You Are.mp3",
             "music/Lady Gaga, Bruno Mars - Die With A Smile.mp3",
